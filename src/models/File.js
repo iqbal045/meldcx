@@ -2,15 +2,19 @@ const mongoose = require('mongoose');
 
 const fileSchema = mongoose.Schema(
   {
-    file_url: {
+    fileUrl: {
       type: String,
       required: true,
     },
-    public_key: {
+    mimeType: {
       type: String,
       required: true,
     },
-    private_key: {
+    publicKey: {
+      type: String,
+      required: true,
+    },
+    privateKey: {
       type: String,
       required: true,
     },

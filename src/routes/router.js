@@ -1,4 +1,4 @@
-// Route handlers
+// File Route handlers
 const fileRoutes = require('./fileRoutes');
 
 const routes = [
