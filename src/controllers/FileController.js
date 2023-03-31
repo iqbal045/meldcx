@@ -25,11 +25,8 @@ exports.files = async (req, res) => {
     // save file
     await file.save();
 
-    // generate file url
-    file.fileUrl = `${req.protocol}://${req.get('host')}${file.fileUrl}`;
-
     // return response
-    return response.success(res, file, 'File upload successfully.', 201);
+    return response.success(res, keyPair, 'File upload successfully.', 201);
   } catch (err) {
     return response.error(res, err, 'Error Occurred.', err.status || 500);
   }
@@ -38,14 +35,24 @@ exports.files = async (req, res) => {
 // get file by public key
 exports.getFile = async (req, res) => {
   try {
-    console.log(req.params.publicKey);
+    // find file by public key
+    const file = await File.findOne({ publicKey: req.params.publicKey });
+
+    // check if file is present
+    if (!file) {
+      return response.error(res, {}, 'File not found.', 404);
+    }
+
+    // generate file url
+    const fileUrl = `${req.protocol}://${req.get('host')}${file.fileUrl}`;
+
+    const data = {
+      fileUrl,
+      mimeType: file.mimeType,
+    };
+
     // return response
-    return response.success(
-      res,
-      { key: req.params.publicKey },
-      'file getFile',
-      200,
-    );
+    return response.success(res, data, 'File retrieve.', 200);
   } catch (err) {
     return response.error(res, err, 'Error Occurred.', err.status || 500);
   }
