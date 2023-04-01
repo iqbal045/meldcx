@@ -7,7 +7,7 @@
     "start": "NODE_ENV=production node index.js",
     "dev": "NODE_ENV=development nodemon index.js --exec 'npm run lint && node'",
     "lint": "eslint \"*.js\"",
-    "test": "NODE_ENV=test jest --watchAll"
+    "test": "cross-env NODE_ENV=test jest --watchAll --testTimeout=5000"
   },
   "author": "iqbal045",
   "license": "ISC",
@@ -15,6 +15,7 @@
     "chalk": "^4.1.2",
     "config": "^3.3.9",
     "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
