@@ -2,7 +2,6 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../app');
-const fs = require('fs');
 
 /* Connecting to the database before each test. */
 beforeEach(async () => {
