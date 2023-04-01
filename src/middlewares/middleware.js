@@ -6,6 +6,7 @@ const middleware = [
   cors(),
   express.json(),
   express.urlencoded({ extended: true }),
+  express.static(`${process.env.FOLDER}`),
   morgan('dev'),
 ];
 

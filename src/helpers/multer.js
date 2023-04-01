@@ -1,10 +1,9 @@
-const config = require('config');
 const path = require('path');
 const multer = require('multer');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, `${config.get('FOLDER')}`);
+    cb(null, `${process.env.FOLDER}`);
   },
   filename: (req, file, cb) => {
     const fileExtension = path.extname(file.originalname);
