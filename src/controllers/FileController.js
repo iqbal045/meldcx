@@ -74,7 +74,7 @@ exports.deleteFile = async (req, res) => {
     await File.findByIdAndRemove(file.id);
 
     // delete file from storage
-    await fs.unlinkSync(file.fileUrl);
+    fs.unlinkSync(file.fileUrl);
 
     // return response
     return response.success(res, {}, 'File deleted successfully.', 200);

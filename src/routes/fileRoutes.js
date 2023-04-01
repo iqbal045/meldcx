@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { files, getFile, deleteFile } = require('../controllers/FileController');
-const upload = require('../middlewares/multer');
+const upload = require('../helpers/multer');
 
 router.post('/', upload.single('file'), files);
 router.get('/:publicKey', getFile);
