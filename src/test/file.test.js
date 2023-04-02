@@ -31,8 +31,8 @@ describe('Test POST /files', () => {
     expect(res.body.data).toHaveProperty('privateKey');
     expect(res.body.data).toHaveProperty('publicKey');
 
-    this.privateKey = res.body.data.privateKey;
-    this.publicKey = res.body.data.publicKey;
+    privateKey = res.body.data.privateKey;
+    publicKey = res.body.data.publicKey;
   });
 });
 
@@ -40,7 +40,7 @@ describe('Test POST /files', () => {
 describe('Test GET/files/:publicKey', () => {
   test('should return 200', async () => {
     const res = await request(app)
-      .get(`/files/${this.publicKey}`)
+      .get(`/files/${publicKey}`)
       .expect('Content-Type', /json/)
       .expect(200);
     expect(res.body.message).toBe('File retrieve.');
@@ -53,7 +53,7 @@ describe('Test GET/files/:publicKey', () => {
 describe('Test DELETE/files/:privateKey', () => {
   test('should return 200', async () => {
     const res = await request(app)
-      .delete(`/files/${this.privateKey}`)
+      .delete(`/files/${privateKey}`)
       .expect('Content-Type', /json/)
       .expect(200);
 
